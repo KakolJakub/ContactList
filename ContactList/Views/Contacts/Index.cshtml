@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ContactList.Models.Contact>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Dodaj kontakt", "Create")
+</p>
+
+<div id="details-section"></div>
+
+@Html.Partial("_IndexPartial")

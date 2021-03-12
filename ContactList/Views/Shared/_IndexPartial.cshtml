@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ContactList.Models.Contact>
+
+<div>
+    <strong>
+        @ViewBag.AjaxInfo
+    </strong>
+</div>
+
+<div id="contactlist-section">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Ajax.ActionLink(item.Name, "Details", new { id = item.ContactId }, new AjaxOptions() { UpdateTargetId = "details-section", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            <!--@@Html.Partial("_DetailsPartial", item) -->
+            <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ContactId }) |-->
+            <!--@@Html.ActionLink("Details", "Details", new { id = item.ContactId }) | -->
+            @Html.ActionLink("Usuń", "Delete", new { id = item.ContactId })
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>
